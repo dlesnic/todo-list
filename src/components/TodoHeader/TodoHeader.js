@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import './TodoHeader.css';
 
+const initialState = {
+    inputValue: ""
+};
 class TodoHeader extends Component<> {
-
     state = {
-        inputValue: ""
-    }
+        ...initialState
+    };
 
     handleClick = () => {
         this.props.addItem(this.state.inputValue);
+        this.setState({
+            ...initialState
+        });
     }
 
     handleChange = (event) => {

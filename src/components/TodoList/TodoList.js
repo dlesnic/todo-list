@@ -44,7 +44,6 @@ class TodoList extends Component {
     };
 
     changeView = (event) => {
-        console.log("test", event.target.value)
         this.setState({
             view: event.target.value
         })
@@ -53,13 +52,10 @@ class TodoList extends Component {
     filterByView = (item) => {
         switch(this.state.view) {
             case this.views.ALL:
-                console.log("all");
                 return true;
             case this.views.COMPLETED:
-                console.log("completed", item.completed);
                 return item.completed;
             case this.views.ACTIVE:
-                console.log("active",!item.completed);
                 return !item.completed;
             default:
                 return true;
