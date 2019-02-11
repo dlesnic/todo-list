@@ -1,0 +1,7 @@
+.todo-header {
+    display: flex;
+}
+  
+.todo-header input[type="button"] {
+    width: 20%;
+}
