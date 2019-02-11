@@ -4,8 +4,8 @@ import './TodoItem.css';
 export default class TodoItem extends Component {
 
     updateItem = (event) => {
-        this.props.updateItem(event.target.value, this.props.item.id)
-    }
+        this.props.updateItem(event.target.checked, this.props.item.id)
+    };
 
 
     render() {
@@ -14,8 +14,8 @@ export default class TodoItem extends Component {
       <div className='todo-item'>
           <input
             type='text'
-            value={this.props.item.text}
-            className={this.props.item.checked ? "completed" : ""}/>
+            defaultValue={this.props.item.text}
+            className={this.props.item.completed ? "completed" : ""}/>
           <input
               type="checkbox"
               className='align-left checkbox-round'

@@ -24,10 +24,18 @@ class TodoList extends Component {
     };
 
     updateItem = (value, index) => {
-        const item = this.state.todoItems.get(index);
-        item.completed = value;
+        const newItems = this.state.todoItems.map(item => {
+            if(item.id !== index) {
+                return item;
+            }
+            return {
+                ...item,
+                completed: value
+            };
+        });
 
-    }
+        this.setState({todoItems : newItems});
+    };
 
 
     render() {
@@ -35,7 +43,7 @@ class TodoList extends Component {
             <div>
                 <TodoHeader addItem={this.addItem}/>
                 {
-                    this.state.todoItems.map(item => <TodoItem updateItem={this.updateItem} item={item}/>)
+                    this.state.todoItems.map(item => <TodoItem updateItem={this.updateItem} key={item.id} item={item}/>)
                 }
             </div>
         );
