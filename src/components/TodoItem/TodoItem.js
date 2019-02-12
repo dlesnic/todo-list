@@ -4,7 +4,8 @@ import './TodoItem.css';
 export default class TodoItem extends Component {
 
     updateItem = (event) => {
-        this.props.updateItem(event.target.checked, this.props.item.id)
+        const completed = {completed: event.target.checked};
+        this.props.updateItem(completed, this.props.item.id)
     };
 
     render() {

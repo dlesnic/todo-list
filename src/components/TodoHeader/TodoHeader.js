@@ -10,17 +10,19 @@ class TodoHeader extends Component<> {
     };
 
     handleClick = () => {
-        this.props.addItem(this.state.inputValue);
-        this.setState({
-            ...initialState
-        });
-    }
+        if(this.state.inputValue) {
+            this.props.addItem(this.state.inputValue);
+            this.setState({
+                ...initialState
+            });
+        }
+    };
 
     handleChange = (event) => {
         this.setState({
             inputValue: event.target.value
         });
-    }
+    };
 
     render() { 
         return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoHeader from '../TodoHeader/TodoHeader';
 import TodoItem from '../TodoItem/TodoItem';
 import './TodoList.css';
+import TodoFooter from "../TodoFooter/TodoFooter";
 
 
 class TodoList extends Component {
@@ -29,23 +30,20 @@ class TodoList extends Component {
         });
     };
 
-    updateItem = (value, index) => {
+    updateItem = (obj, index) => {
         const newItems = this.state.todoItems.map(item => {
             if(item.id !== index) {
                 return item;
             }
-            return {
-                ...item,
-                completed: value
-            };
+            return Object.assign(item, obj);
         });
 
         this.setState({todoItems : newItems});
     };
 
-    changeView = (event) => {
+    changeView = (value) => {
         this.setState({
-            view: event.target.value
+            view: value
         })
     }
 
@@ -63,6 +61,7 @@ class TodoList extends Component {
     };
 
     render() {
+        const showFooter = this.state.todoItems.length > 0;
         return (
             <div>
                 <TodoHeader addItem={this.addItem}/>
@@ -71,11 +70,7 @@ class TodoList extends Component {
                         .filter(item => this.filterByView(item))
                         .map(item => <TodoItem updateItem={this.updateItem} key={item.id} item={item}/>)
                 }
-                <div>
-                    <input type="button" onClick={this.changeView} value="All"/>
-                    <input type="button" onClick={this.changeView} value="Active"/>
-                    <input type="button" onClick={this.changeView} value="Completed"/>
-                </div>
+                {showFooter && <TodoFooter listSize={this.state.todoItems.length} changeView={this.changeView}/>}
             </div>
         );
     }
